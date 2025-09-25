@@ -35,7 +35,7 @@ for j in range(1, 6):
     ubicacion = f"Nivel {random.randint(1, 5)}"
     espacios.append(id_esp)
     session.execute(
-        "INSERT INTO espacio (id_espacio, nombre, tipo, capacidad_max, ubicacion) VALUES (%s, %s, %s, %s, %s)",
+        "INSERT INTO espacio (id_espacio, nombre, tipo, capacidad_maxima, ubicacion) VALUES (%s, %s, %s, %s, %s)",
         (id_esp, nombre, tipo, capacidad, ubicacion)
     )
 
