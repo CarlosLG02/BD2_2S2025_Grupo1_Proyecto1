@@ -11,7 +11,7 @@ CREATE TABLE usuario (
     nit text
 );
 
-CREATE TABLE espacios (
+CREATE TABLE espacio (
     id_espacio TEXT PRIMARY KEY,
     tipo text,
     nombre text,
