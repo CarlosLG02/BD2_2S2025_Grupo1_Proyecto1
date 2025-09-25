@@ -50,16 +50,10 @@ docker compose -f docker-compose-stats.yml up
 ##### Para cargar las tablas de la bd a los nodos se realiza con:
 
 ```bash
-docker exec -it cassandra1 cqlsh -u cassandra -p cassandra -f /data-1/ddl.cql
+docker exec -it cassandra1 cqlsh -u cassandra -p cassandra -f /database/ddl.cql
 ```
 
-#### Monitoreo con Prometheus
-
-Utilizamos Prometheus en el cluster para recopilar métricas de los nodos de Cassandra, los datos son expuestos vía JMX en el puerto 7199. Traducimos de JMX a un endpoint en HTTP de métricas se crea un contenedor exportador por cada nodo Cassandra.
-
-Se define un único job llamado "cassandra" con tres targets estáticos: los tres exportadores en sus puertos internos 8080. Cada 15 segundos Prometheus consultará cada exportador para obtener las métricas actuales.
-
-web de Prometheus en http://localhost:9090.
+o desde un programa como lo es tableplus
 
 #### Script de carga de datos en Python
 
