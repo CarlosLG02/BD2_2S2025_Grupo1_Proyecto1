@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  cassandra1:
+    image: cassandra:latest
+    container_name: cassandra1
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=SDB2_Cluster
+      - CASSANDRA_SEEDS=cassandra1,cassandra2
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra1
+      - CASSANDRA_LISTEN_ADDRESS=cassandra1
+    networks:
+      - cassandra_net
+
+  cassandra2:
+    image: cassandra:latest
+    container_name: cassandra2
+    depends_on:
+      - cassandra1
+    ports:
+      - "9043:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=SDB2_Cluster
+      - CASSANDRA_SEEDS=cassandra1,cassandra2
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra2
+      - CASSANDRA_LISTEN_ADDRESS=cassandra2
+    networks:
+      - cassandra_net
+
+  cassandra3:
+    image: cassandra:latest
+    container_name: cassandra3
+    depends_on:
+      - cassandra1
+    ports:
+      - "9044:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=SDB2_Cluster
+      - CASSANDRA_SEEDS=cassandra1,cassandra2
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra3
+      - CASSANDRA_LISTEN_ADDRESS=0.0.0.0
+    networks:
+      - cassandra_net
+
+networks:
+  cassandra_net:
+    driver: bridge
