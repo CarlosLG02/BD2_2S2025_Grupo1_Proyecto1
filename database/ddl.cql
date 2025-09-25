@@ -3,7 +3,7 @@ CREATE KEYSPACE sbd2_p1
 
 USE sbd2_p1;
 
-CREATE TABLE usuarios (
+CREATE TABLE usuario (
     dpi text PRIMARY KEY,
     nombre text,
     email text,
